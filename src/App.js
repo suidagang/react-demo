@@ -1,12 +1,10 @@
-import { Button } from "antd";
+import LayoutContainer from "./layout/index";
 import "./App.css";
-
 function App() {
   return (
     <div className="App">
-      <Button type="primary">Button</Button>
+      <LayoutContainer />
     </div>
   );
 }
-
 export default App;
