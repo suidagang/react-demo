@@ -1,0 +1,22 @@
+# Memo Hook
+
+`useMemo()`： 主要用来解决使用React hooks产生的无用渲染的性能问题。
+
+## **语法和参数说明**
+
+```javascript
+const cacheSomething = useMemo(create,deps)
+```
+
+* create：第一个参数为一个函数，函数的返回值作为缓存值
+* deps： 第二个参数为一个数组，存放当前 useMemo 的依赖项，在函数组件下一次执行的时候，会对比 deps 依赖项里面的状态，是否有改变，如果有改变重新执行 create ，得到新的缓存值。
+* cacheSomething：返回值，执行 create 的返回值。如果 deps 中有依赖项改变，返回的重新执行 create 产生的值，否则取上一次缓存
+
+
+**解决问题**：使用function的形式来声明组件，失去了shouldCompnentUpdate（在组件更新之前）这个生命周期，也就是说没有办法通过组件更新前条件来决定组件是否更新。而且在函数组件中，也不再区分mount和update两个状态，这意味着函数组件的每一次调用都会执行内部的所有逻辑，就带来了非常大的性能损耗。
+
+**useMemo原理**：
+
+* 可以缓存 element 对象，从而达到按条件渲染组件，优化性能的作用。
+* 如果组件中不期望每次 render 都重新计算一些值，可以利用 useMemo 把它缓存起来。
+* 可以把函数和属性缓存起来，作为 PureComponent 的绑定方法，或者配合其他Hooks一起使用

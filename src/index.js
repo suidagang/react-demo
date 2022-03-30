@@ -3,12 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 // import App from "./App";
 import StateDemo1 from "./demo/useState/demo1";
+import HookReducer from "./demo/useReducer/index";
+import RefComponent from "./demo/useRef/index";
+import CallbackComponent from "./demo/useCallback/index";
+
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   //! 严格模式检查只在开发模式下运行，不会与生产模式冲突
   <React.StrictMode>
     <StateDemo1 />
+    <HookReducer />
+    <RefComponent />
+    <div style={{ marginBottom: "20px" }}></div>
+    <CallbackComponent />
   </React.StrictMode>,
   document.getElementById("root")
 );
