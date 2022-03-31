@@ -1,32 +1,36 @@
-import { useState, useCallback } from "react";
-const CallbackComponent = () => {
-  let [count, setCount] = useState(1);
-  let [num, setNum] = useState(1);
+import React, { useState, useCallback } from "react";
+import Button from "./Button";
 
-  const memoized = useCallback(() => {
-    return num;
-  }, [count]);
-  console.log("记忆：", memoized());
-  console.log("原始：", num);
+export default function CallbackComponent() {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const [count3, setCount3] = useState(0);
+
+  const handleClickButton1 = () => {
+    setCount1(count1 + 1);
+  };
+
+  const handleClickButton2 = useCallback(() => {
+    setCount2(count2 + 1);
+  }, [count2]);
+
   return (
-    <>
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        {" "}
-        count+
-      </button>
-      <button
-        onClick={() => {
-          setNum(num + 1);
-        }}
-      >
-        {" "}
-        num+
-      </button>
-    </>
+    <div>
+      <div>
+        <Button onClickButton={handleClickButton1}>Button1</Button>
+      </div>
+      <div>
+        <Button onClickButton={handleClickButton2}>Button2</Button>
+      </div>
+      <div>
+        <Button
+          onClickButton={() => {
+            setCount3(count3 + 1);
+          }}
+        >
+          Button3
+        </Button>
+      </div>
+    </div>
   );
-};
-export default CallbackComponent;
+}
