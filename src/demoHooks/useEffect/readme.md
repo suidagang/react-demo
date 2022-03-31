@@ -32,3 +32,6 @@ useEffect(() => {
 * useEffect中定义的函数的执行不会阻碍浏览器更新视图，也就是说这些函数时异步执行的，而componentDidMonut和componentDidUpdate中的代码都是同步执行的。
 
 **`总结`** :可以把 useEffect Hook 看做如下三个函数的组合 ：componentDidMount()、componentDidUpdate()、componentWillUnmount()
+
+
+那我们应该如何让useEffect支持async/await呢？参考 =======asyncUseEffect.js
