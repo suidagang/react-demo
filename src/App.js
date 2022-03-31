@@ -1,5 +1,6 @@
 import LayoutContainer from "./layout/index";
-import "./App.css";
+import "@/assets/css/reset.less";
+import "@/assets/css/App.less";
 function App() {
   return (
     <div className="App">

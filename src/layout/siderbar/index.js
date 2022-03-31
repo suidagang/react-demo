@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.less";
 import React, { useState } from "react";
 const arr = ["测试一", "测试二"];
 function Siderbar() {

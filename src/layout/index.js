@@ -1,5 +1,5 @@
 import Siderbar from "./siderbar";
-import "./index.css";
+import "./index.less";
 function LayoutContainer() {
   return (
     <div className="sys-content">
