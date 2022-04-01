@@ -1,14 +1,16 @@
 import Siderbar from "./siderbar";
-import "./index.less";
+import styles from "./index.module.less";
+import Header from "./header/index";
+import Content from "./content/index";
 function LayoutContainer() {
   return (
-    <div className="sys-content">
-      <div className="siderbar">
+    <div className={styles.sys_content}>
+      <div className={styles.siderbar}>
         <Siderbar />
       </div>
-      <div className="sys-right">
-        <div className="header"></div>
-        <div className="content"></div>
+      <div className={styles.sys_right}>
+        <Header />
+        <Content />
       </div>
     </div>
   );
