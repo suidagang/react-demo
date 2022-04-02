@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useRoutes } from "react-router-dom";
 import style from "./index.module.less";
 import React, { useState } from "react";
+// import routes from "@/router/index";
 const arr = [
   { name: "测试一", path: "/home" },
   { name: "测试二", path: "/detail" },

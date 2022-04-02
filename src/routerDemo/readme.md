@@ -18,3 +18,37 @@ import { useNavigate } from 'react-router-dom';
 const navigate = useNavigate();
 navigate('url', {replace: true});
 ```
+
+## 5. 通过配置实现路由管理
+
+> `useRoutes` 可以将数组对象形式的路由，直接在页面上使用。
+
+## 6. 获取路由的参数
+
+1. `useParams` 获取动态路由的值；
+2. `useSearchParams` 获取查询字符串的值。
+
+
+## 7. 默认路由
+
+> 当页面有多个子路由，比如在 `/goods` 时，页面展示 `商品列表`； `/goods/:id`时，展示某个商品的详情。
+1. `Route` 的 `index` 属性就是用来展示默认子路由的。
+
+```javascript
+<BrowserRouter>
+    <Routes>
+    <Route path='/' element={<Home />}>
+        <Route path='goods' element={<Goods />} >
+        {/* 默认 子路由 ，在页面 路由为 /goods ，会展示该子路由 */}
+        <Route index element={<GoodsList />}/>
+
+        <Route path=":id" element={<GoodsDetail />}/>
+        </Route>
+
+        <Route path='customer' element={<Customer />} ></Route>
+        <Route path="*" element={<NotFound />} /> 
+    </Route>
+
+    </Routes>
+</BrowserRouter>
+```

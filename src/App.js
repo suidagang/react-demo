@@ -6,6 +6,7 @@ import routes from "./router/index";
 
 function App() {
   const element = useRoutes(routes);
+  console.log(element, "---eee");
   return (
     <div className="App">
       {element}
