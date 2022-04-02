@@ -1,9 +1,9 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import style from "./index.module.less";
 import React, { useState } from "react";
 const arr = [
-  { name: "测试一", path: "/Home" },
-  { name: "测试二", path: "/Detail" },
+  { name: "测试一", path: "/home" },
+  { name: "测试二", path: "/detail" },
 ];
 function Siderbar() {
   const [activeNum, setActiveNum] = useState(0);
@@ -13,24 +13,23 @@ function Siderbar() {
   return (
     <div>
       <div className={style.sys_logo}>大屏项目</div>
-      <BrowserRouter>
-        {arr.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className={
-                activeNum === index
-                  ? `${style.siderbar_item}  ${style.item_active}`
-                  : style.siderbar_item
-              }
-              onClick={() => choiceItem(index)}
-            >
-              {/* {item.name} */}
-              <Link to={item.path}>{item.name}</Link>
-            </div>
-          );
-        })}
-      </BrowserRouter>
+      {arr.map((item, index) => {
+        return (
+          <div
+            key={index}
+            className={
+              activeNum === index
+                ? `${style.siderbar_item}  ${style.item_active}`
+                : style.siderbar_item
+            }
+            onClick={() => choiceItem(index)}
+          >
+            <Link key={index} to={item.path}>
+              {item.name}
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

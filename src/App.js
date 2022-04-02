@@ -1,10 +1,15 @@
 import LayoutContainer from "./layout/index";
 import "@/assets/css/reset.less";
 import "@/assets/css/App.less";
+import { useRoutes } from "react-router-dom";
+import routes from "./router/index";
+
 function App() {
+  const element = useRoutes(routes);
   return (
     <div className="App">
-      <LayoutContainer />
+      {element}
+      {/* <LayoutContainer /> */}
     </div>
   );
 }

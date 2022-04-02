@@ -3,6 +3,7 @@ import Layout from "./Layout/index";
 import Home from "./home/Home";
 import Detail from "./detail/Detail";
 import SubHome from "./subHome/index";
+import Page404 from "./404/index";
 const nestedRouter = () => {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ const nestedRouter = () => {
             <Route path="subHome" element={<SubHome />}></Route>
           </Route>
           <Route path="detail" element={<Detail />} />
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </BrowserRouter>
