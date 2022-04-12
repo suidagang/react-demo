@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { HomeOutlined } from "@ant-design/icons";
 
 import styles from "./index.module.less";
 function Header() {
@@ -9,6 +10,7 @@ function Header() {
   };
   return (
     <div className={styles.header}>
+      <HomeOutlined />
       <button onClick={LogoutSys}>退出</button>
     </div>
   );
