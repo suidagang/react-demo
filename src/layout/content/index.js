@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
+import { Layout } from "antd";
 import styles from "./index.module.less";
+const { Content } = Layout;
 
-const Content = () => {
+const ContentComponents = () => {
   return (
-    <div className={styles.content}>
+    <Content className={styles.content}>
       <Outlet />
-    </div>
+    </Content>
   );
 };
-export default Content;
+export default ContentComponents;

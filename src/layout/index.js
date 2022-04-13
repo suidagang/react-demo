@@ -1,15 +1,12 @@
+import { Layout } from "antd";
 import Siderbar from "./siderbar";
 import { useState } from "react";
 import styles from "./index.module.less";
 import Header from "./header/index";
-import Content from "./content/index";
+import ContentComponents from "./content/index";
+// const { Header, Content } = Layout;
 const LayoutContainer = () => {
   const [collapsed, setCollapsed] = useState(false);
-  /**
-   * !4/12 明天继续
-   * todo 侧边栏收缩处理
-   * @param {*} is
-   */
   const toggleSidebar = () => {
     setCollapsed(() => {
       let newCollapsed = !collapsed;
@@ -17,15 +14,13 @@ const LayoutContainer = () => {
     });
   };
   return (
-    <div className={styles.sys_content}>
-      <div className={styles.siderbar}>
-        <Siderbar collapsed={collapsed} />
-      </div>
-      <div className={styles.sys_right}>
+    <Layout className={styles.layout_page}>
+      <Siderbar collapsible collapsed={collapsed} />
+      <Layout>
         <Header toggleSidebar={toggleSidebar} />
-        <Content />
-      </div>
-    </div>
+        <ContentComponents />
+      </Layout>
+    </Layout>
   );
 };
 export default LayoutContainer;
