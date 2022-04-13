@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import React, { useMemo } from "react";
-import { Menu } from "antd";
+import styles from "./index.module.less";
+import { Menu, Layout } from "antd";
 
 //渲染menu--andt
 const renderMenu = (item, path) => {
   // 没有下级路由
   if (!item.children) {
-    console.log(item.path, "eee");
     return (
       <Menu.Item key={item.key}>
         <Link to={item.path}>{item.name}</Link>
@@ -21,7 +21,8 @@ const renderMenu = (item, path) => {
   );
 };
 const { SubMenu } = Menu;
-const Siderbar = () => {
+const { Sider } = Layout;
+const Siderbar = (props) => {
   let arr = [
     {
       name: "主页",
@@ -71,9 +72,18 @@ const Siderbar = () => {
     [arr]
   );
   return (
-    <Menu mode="inline" theme="dark" className="layout-page-sider-menu text-2">
-      {menuComponents}
-    </Menu>
+    // <Layout>
+    <Sider trigger={null} collapsible collapsed={props.collapsed}>
+      <div className={styles.sys_logo}>LOGO</div>
+      <Menu
+        mode="inline"
+        theme="dark"
+        className="layout-page-sider-menu text-2"
+      >
+        {menuComponents}
+      </Menu>
+    </Sider>
+    // </Layout>
   );
 };
 export default Siderbar;
