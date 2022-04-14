@@ -1,14 +1,20 @@
-import Home from "@/views/home/Home";
-import Detail from "@/views/detail/Detail";
-import NotFound from "@/views/notFound/NotFound";
+import { lazy, Suspense } from "react";
+import { Spin } from "antd";
 import LayoutContainer from "@/layout/index";
-import Login from "@/views/login/Login";
-import SubHome from "@/views/home/subHome/index";
-import Test from "@/views/test/index";
-import Test1 from "@/views/test/test1";
-import Test2 from "@/views/test/test2";
-import Test3 from "@/views/test/test3";
-import Test4 from "@/views/test/test4";
+const Login = lazy(() => import("@/views/login/Login"));
+const Home = lazy(() => import("@/views/home/Home"));
+const Detail = lazy(() => import("@/views/detail/Detail"));
+const NotFound = lazy(() => import("@/views/notFound/NotFound"));
+const SubHome = lazy(() => import("@/views/home/subHome/index"));
+const Test = lazy(() => import("@/views/test/index"));
+const Test1 = lazy(() => import("@/views/test/test1"));
+const Test2 = lazy(() => import("@/views/test/test2"));
+const Test3 = lazy(() => import("@/views/test/test3"));
+const Test4 = lazy(() => import("@/views/test/test4"));
+
+const lazyLoad = (children) => {
+  return <Suspense fallback={<Spin />}>{children}</Suspense>;
+};
 const routes = [
   {
     path: "/",
@@ -17,50 +23,50 @@ const routes = [
       {
         path: "/home",
         name: "主页",
-        element: <Home />,
+        element: lazyLoad(<Home />),
         children: [
           {
             path: "/home/subHome",
             name: "主页子页",
-            element: <SubHome />,
+            element: lazyLoad(<SubHome />),
           },
         ],
       },
       {
         path: "/detail",
         name: "主页",
-        element: <Detail />,
+        element: lazyLoad(<Detail />),
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: lazyLoad(<NotFound />),
       },
       {
         path: "/test",
-        element: <Test />,
+        element: lazyLoad(<Test />),
         children: [
           {
             path: "/test/test1",
-            element: <Test1 />,
+            element: lazyLoad(<Test1 />),
             children: [
               {
                 path: "/test/test1/test3",
-                element: <Test3 />,
+                element: lazyLoad(<Test3 />),
               },
               {
                 path: "/test/test1/test4",
-                element: <Test4 />,
+                element: lazyLoad(<Test4 />),
               },
             ],
           },
           {
             path: "/test/test2",
-            element: <Test2 />,
+            element: lazyLoad(<Test2 />),
           },
         ],
       },
     ],
   },
-  { path: "/login", element: <Login /> },
+  { path: "/login", element: lazyLoad(<Login />) },
 ];
 export default routes;
