@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Button } from "antd";
 import { MenuFoldOutlined } from "@ant-design/icons";
 
 import styles from "./index.module.less";
@@ -23,9 +23,9 @@ const Header = (props) => {
           <a href="">测试</a>
         </Breadcrumb.Item>
       </Breadcrumb>
-      <button onClick={LogoutSys} className={styles.logout}>
+      <Button type="primary" onClick={LogoutSys} className={styles.logout}>
         退出
-      </button>
+      </Button>
     </div>
   );
 };
