@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, matchRoutes } from "react-router-dom";
 import { Breadcrumb, Button } from "antd";
 import { MenuFoldOutlined } from "@ant-design/icons";
+import routes from "@/router/index";
 
 import styles from "./index.module.less";
 const Header = (props) => {
@@ -8,7 +9,18 @@ const Header = (props) => {
   const LogoutSys = () => {
     navigate("/login", { replace: true });
   };
-  console.log(window.location.href);
+  const location = useLocation();
+  const routersNew = matchRoutes(routes, location);
+  let breadCrumbArr = [];
+  routersNew.forEach((item) => {
+    if (item.route.name) {
+      let obj = {
+        name: item.route.name,
+        path: item.route.path,
+      };
+      breadCrumbArr.push(obj);
+    }
+  });
   return (
     <div className={styles.header}>
       <MenuFoldOutlined
@@ -16,13 +28,15 @@ const Header = (props) => {
         onClick={props.toggleSidebar}
       />
       <Breadcrumb className={styles.breadcrumb}>
-        <Breadcrumb.Item>
-          <a href="">主页</a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <a href="">测试</a>
-        </Breadcrumb.Item>
+        {breadCrumbArr.map((item, index) => {
+          return (
+            <Breadcrumb.Item key={item.path}>
+              <a href={item.path}>{item.name}</a>
+            </Breadcrumb.Item>
+          );
+        })}
       </Breadcrumb>
+
       <Button type="primary" onClick={LogoutSys} className={styles.logout}>
         退出
       </Button>
