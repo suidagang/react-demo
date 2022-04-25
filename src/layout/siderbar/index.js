@@ -24,49 +24,18 @@ const renderMenu = (item, path) => {
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 const Siderbar = (props) => {
-  let arr = [
-    {
-      name: "主页",
-      path: "/home",
-      children: [
-        {
-          path: "/home/subHome",
-          name: "主页子页",
-        },
-      ],
-    },
-    {
-      name: "测试",
-      path: "/test",
-      children: [
-        {
-          name: "测试一",
-          path: "/test/test1",
-          children: [
-            {
-              name: "测试三",
-              path: "/test/test1/test3",
-            },
-            {
-              name: "测试四",
-              path: "/test/test1/test4",
-            },
-          ],
-        },
-        {
-          name: "测试二",
-          path: "/test/test2",
-        },
-      ],
-    },
-    { name: "详情页", path: "/detail" },
-  ];
+  let sidebarArr = [];
+  routes.forEach((item) => {
+    if (item.path === "/" && !item.redirect) {
+      sidebarArr = item.children;
+    }
+  });
   const [defaultOpenKeys, setDefaultOpenKeys] = useState([]);
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([]);
   const [isInit, setIsInit] = useState(false);
   const menuComponents = useMemo(
-    () => arr.map((m) => renderMenu(m, "")),
-    [arr]
+    () => sidebarArr.map((m) => renderMenu(m, "")),
+    [sidebarArr]
   );
   const location = useLocation();
   //! 解决刷新左侧菜单栏不高亮

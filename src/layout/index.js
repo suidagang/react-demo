@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from "./index.module.less";
 import Header from "./header/index";
 import ContentComponents from "./content/index";
-// const { Header, Content } = Layout;
 const LayoutContainer = () => {
   const [collapsed, setCollapsed] = useState(false);
   const toggleSidebar = () => {

@@ -18,6 +18,10 @@ const lazyLoad = (children) => {
   return <Suspense fallback={<Spin />}>{children}</Suspense>;
 };
 const routes = [
+  {
+    path: "*",
+    element: lazyLoad(<NotFound />),
+  },
   { path: "/", redirect: "/home" },
   {
     path: "/",
@@ -41,10 +45,7 @@ const routes = [
         name: "详情页",
         element: lazyLoad(<Detail />),
       },
-      {
-        path: "*",
-        element: lazyLoad(<NotFound />),
-      },
+
       {
         path: "/test",
         name: "测试",
