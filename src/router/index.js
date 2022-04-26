@@ -1,8 +1,7 @@
 import { lazy, Suspense } from "react";
-import { useRoutes } from "react-router-dom";
 import { Spin } from "antd";
 import LayoutContainer from "@/layout/index";
-import transformRoutes from "./fn";
+import useReactDeal from "./reactHook";
 const Login = lazy(() => import("@/views/login/Login"));
 const Home = lazy(() => import("@/views/home/Home"));
 const Detail = lazy(() => import("@/views/detail/Detail"));
@@ -79,6 +78,19 @@ const routes = [
   },
   { path: "/login", name: "登录", element: lazyLoad(<Login />) },
 ];
+/**
+ * @description: 全局路由拦截
+ * @param {string} pathname 当前路由路径
+ * @return {string} 需要跳转到其他页时就return一个该页的path路径
+ */
+const onRouteBefore = (pathname) => {
+  let isLogin = localStorage.getItem("isLogin");
+  if (isLogin === "false" && pathname !== "/login") {
+    return "/login";
+  } else {
+    return "";
+  }
+};
 //根据路径获取路由
 const checkAuth = (routers, path) => {
   for (const data of routers) {
@@ -98,6 +110,5 @@ const checkRouterAuth = (path) => {
   auth = checkAuth(routes, path);
   return auth;
 };
-const Router = () => useRoutes(transformRoutes(routes));
-export default routes;
-export { Router, checkRouterAuth };
+const Router = () => useReactDeal(routes, onRouteBefore);
+export { routes, Router, checkRouterAuth };

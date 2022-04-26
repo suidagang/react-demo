@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
+
 // 实现router redirect 重定向功能
-const transformRoutes = (routerList) => {
+const transformRoutes = (routerList, onRouteBefore) => {
   const list = [];
   routerList.forEach((route) => {
     const obj = { ...route };

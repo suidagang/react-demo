@@ -3,6 +3,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const LoginSys = () => {
+    localStorage.setItem("isLogin", "true");
     navigate("/home", { replace: true });
   };
   return (

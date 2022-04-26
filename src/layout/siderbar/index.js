@@ -2,7 +2,7 @@ import { Link, useLocation, matchRoutes } from "react-router-dom";
 import React, { useEffect, useMemo, useState } from "react";
 import styles from "./index.module.less";
 import { Menu, Layout } from "antd";
-import routes from "@/router/index";
+import { routes } from "@/router";
 
 //渲染menu--andt
 const renderMenu = (item, path) => {
